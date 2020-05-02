@@ -152,7 +152,7 @@ function normalizeParams(originalTypeEvent, handler, delegationFn) {
     typeEvent = custom
   }
 
-  const isNative = nativeEvents.indexOf(typeEvent) > -1
+  const isNative = nativeEvents.includes(typeEvent)
 
   if (!isNative) {
     typeEvent = originalTypeEvent
@@ -211,7 +211,7 @@ function removeNamespacedHandlers(element, events, typeEvent, namespace) {
   const storeElementEvent = events[typeEvent] || {}
 
   Object.keys(storeElementEvent).forEach(handlerKey => {
-    if (handlerKey.indexOf(namespace) > -1) {
+    if (handlerKey.includes(namespace)) {
       const event = storeElementEvent[handlerKey]
 
       removeHandler(element, events, typeEvent, event.originalHandler, event.delegationSelector)
@@ -258,7 +258,7 @@ const EventHandler = {
     Object.keys(storeElementEvent).forEach(keyHandlers => {
       const handlerKey = keyHandlers.replace(stripUidRegex, '')
 
-      if (!inNamespace || originalTypeEvent.indexOf(handlerKey) > -1) {
+      if (!inNamespace || originalTypeEvent.includes(handlerKey)) {
         const event = storeElementEvent[keyHandlers]
 
         removeHandler(element, events, typeEvent, event.originalHandler, event.delegationSelector)
@@ -274,7 +274,7 @@ const EventHandler = {
     const $ = getjQuery()
     const typeEvent = event.replace(stripNameRegex, '')
     const inNamespace = event !== typeEvent
-    const isNative = nativeEvents.indexOf(typeEvent) > -1
+    const isNative = nativeEvents.includes(typeEvent)
 
     let jQueryEvent
     let bubbles = true
