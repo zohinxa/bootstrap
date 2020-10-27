@@ -25,6 +25,10 @@ toc: true
 
 - Introduce `$enable-smooth-scroll`, which applies `scroll-behavior: smooth` globally—except for users asking for reduced motion through `prefers-reduced-motion` media query. [See #31877](https://github.com/twbs/bootstrap/pull/31877)
 
+### Buttons
+
+- [**Block buttons have changed and are now responsive.**]({{< docsref "/components/buttons#block-buttons" >}}) Instead of applying `.btn-block` to individual buttons, a group of buttons now get wrapped in a parent `.btn-block`. These classes use `max-width` instead of `min-width` to make buttons within start out stacked until a breakpoint is reached (e.g., `.btn-block-md` will be stacked in `xs` and `sm`).
+
 ### Forms
 
 - The longstanding [Missing border radius on input group with validation feedback bug](https://github.com/twbs/bootstrap/issues/25110) is finally fixed by adding an additional `.has-validation` class to input groups with validation.

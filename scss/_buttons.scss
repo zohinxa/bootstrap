@@ -113,12 +113,19 @@
 // Block button
 //
 
-.btn-block {
-  display: block;
-  width: 100%;
+@each $breakpoint in map-keys($grid-breakpoints) {
+  $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-  // Vertically space out multiple block buttons
-  + .btn-block {
-    margin-top: $btn-block-spacing-y;
+  @include media-breakpoint-down($breakpoint) {
+    .btn-block#{$infix} {
+      > .btn {
+        display: block;
+        width: 100%;
+
+        + .btn {
+          margin-top: $btn-block-spacing-y;
+        }
+      }
+    }
   }
 }

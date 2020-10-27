@@ -72,13 +72,6 @@ Fancy larger or smaller buttons? Add `.btn-lg` or `.btn-sm` for additional sizes
 <button type="button" class="btn btn-secondary btn-sm">Small button</button>
 {{< /example >}}
 
-Create block level buttons—those that span the full width of a parent—by adding `.btn-block`.
-
-{{< example >}}
-<button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
-<button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
-{{< /example >}}
-
 ## Disabled state
 
 Make buttons look inactive by adding the `disabled` boolean attribute to any `<button>` element. Disabled buttons have `pointer-events: none` applied to, preventing hover and active states from triggering.
@@ -104,6 +97,59 @@ Disabled buttons using the `<a>` element behave a bit different:
 
 The `.disabled` class uses `pointer-events: none` to try to disable the link functionality of `<a>`s, but that CSS property is not yet standardized. In addition, even in browsers that do support `pointer-events: none`, keyboard navigation remains unaffected, meaning that sighted keyboard users and users of assistive technologies will still be able to activate these links. So to be safe, in addition to `aria-disabled="true"`, also include a `tabindex="-1"` attribute on these links to prevent them from receiving keyboard focus, and use custom JavaScript to disable their functionality altogether.
 {{< /callout >}}
+
+## Block buttons
+
+Apply the `.btn-block` class to the immediate parent of a group of buttons with `.btn` to stack them vertically. Block button classes are responsive as of Bootstrap 5, allowing you to have buttons that **start stacked** and then move to their normal `inline-block` behavior at the specificed breakpoint.
+
+Classes are available across every grid breakpoint in Bootstrap with `max-width` media queries.
+
+{{< bs-table "table text-left" >}}
+| Class | Behavior |
+| --- | --- |
+| `.btn-block` | Always vertically stacked |
+| `.btn-block-sm` | Vertically stacked until the `sm` breakpoint |
+| `.btn-block-md` | Vertically stacked until the `md` breakpoint |
+| `.btn-block-lg` | Vertically stacked until the `lg` breakpoint |
+| `.btn-block-xl` | Vertically stacked until the `xl` breakpoint |
+| `.btn-block-xxl` | Vertically stacked until the `xxl` breakpoint |
+{{< /bs-table >}}
+
+This approach allows you to use create complex button layouts, and modify behaviors further with utilities.
+
+{{< example >}}
+<div class="btn-block">
+  <button class="btn btn-primary" type="button">Button</button>
+  <button class="btn btn-primary" type="button">Button</button>
+</div>
+{{< /example >}}
+
+Here we're using the `.btn-block-md` class to stack our buttons until the `md` breakpoint is reached. Once the viewport is in the `md` breakpoint size, the buttons will revert to their `inline-block` alignment. Resize your browser to see them change.
+
+{{< example >}}
+<div class="btn-block-md">
+  <button class="btn btn-primary" type="button">Button</button>
+  <button class="btn btn-primary" type="button">Button</button>
+</div>
+{{< /example >}}
+
+You can adjust the width of your block buttons with grid column classes.
+
+{{< example >}}
+<div class="btn-block col-6 mx-auto">
+  <button class="btn btn-primary" type="button">Button</button>
+  <button class="btn btn-primary" type="button">Button</button>
+</div>
+{{< /example >}}
+
+Additional utilities can be used to adjust the alignment of buttons once they're horizontal again. Here we've taken the responsive example above with `.btn-block-md` and added some flexbox and margin utilities to right align the buttons when they're no longer stacked.
+
+{{< example >}}
+<div class="btn-block-md d-md-flex justify-content-end">
+  <button class="btn btn-primary mr-2" type="button">Button</button>
+  <button class="btn btn-primary" type="button">Button</button>
+</div>
+{{< /example >}}
 
 ## Button plugin
 
