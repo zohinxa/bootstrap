@@ -11,9 +11,18 @@
     "plugin:jasmine/recommended"
   ],
   "rules": {
+    "jasmine/expect-matcher": "error",
     "jasmine/expect-single-argument": "off",
+    "jasmine/missing-expect": [
+      "error",
+      "expect()",
+      "testElementIsActiveAfterScroll()"
+    ],
+    "jasmine/named-spy": "off",
     "jasmine/new-line-before-expect": "off",
+    "jasmine/new-line-between-declarations": "error",
     "jasmine/no-spec-dupes": "off",
+    "jasmine/prefer-toBeUndefined": "error",
     "jasmine/prefer-toHaveBeenCalledWith": "off"
   }
 }
