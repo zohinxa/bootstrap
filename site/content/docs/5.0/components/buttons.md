@@ -54,6 +54,10 @@ In need of a button, but not the hefty background colors they bring? Replace the
 {{< /buttons.inline >}}
 {{< /example >}}
 
+{{< callout info >}}
+Some of the button styles use a relatively light foreground color, and should only be used on a dark background in order to have sufficient contrast.
+{{< /callout >}}
+
 ## Sizes
 
 Fancy larger or smaller buttons? Add `.btn-lg` or `.btn-sm` for additional sizes.
@@ -129,10 +133,10 @@ Add `data-toggle="button"` to toggle a button's `active` state. If you're pre-to
 
 You can create a button instance with the button constructor, for example:
 
-{{< highlight js >}}
+```js
 var button = document.getElementById('myButton')
 var bsButton = new bootstrap.Button(button)
-{{< /highlight >}}
+```
 
 <table class="table">
   <thead>
@@ -155,7 +159,7 @@ var bsButton = new bootstrap.Button(button)
         <code>dispose</code>
       </td>
       <td>
-        Destroys an element's button.
+        Destroys an element's button. (Removes stored data on the DOM element)
       </td>
     </tr>
   </tbody>
@@ -163,10 +167,10 @@ var bsButton = new bootstrap.Button(button)
 
 For example, to toggle all buttons
 
-{{< highlight js >}}
+```js
 var buttons = document.querySelectorAll('.btn')
 buttons.forEach(function (button) {
   var button = new bootstrap.Button(button)
   button.toggle()
 })
-{{< /highlight >}}
+```
