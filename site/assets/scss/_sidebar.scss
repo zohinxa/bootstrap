@@ -58,6 +58,10 @@
       background-color: rgba($bd-purple-bright, .1);
     }
 
+    &:focus {
+      box-shadow: 0 0 0 1px rgba($black, .45);
+    }
+
     // Add chevron if there's a submenu
     &::before {
       width: 1.25em;
