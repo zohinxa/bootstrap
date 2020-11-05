@@ -170,6 +170,33 @@ describe('Toast', () => {
 
       toast.show()
     })
+
+    it('should clear timeout if toast is shown again before it is hidden', done => {
+      fixtureEl.innerHTML = [
+        '<div class="toast">',
+        '  <div class="toast-body">',
+        '    a simple toast',
+        '  </div>',
+        '</div>'
+      ].join('')
+
+      const toastEl = fixtureEl.querySelector('.toast')
+      const toast = new Toast(toastEl)
+
+      setTimeout(() => {
+        toast._config.autohide = false
+        toastEl.addEventListener('shown.bs.toast', () => {
+          expect(toast._clearTimeout).toHaveBeenCalled()
+          expect(toast._timeout).toBeNull()
+          done()
+        })
+        toast.show()
+      }, toast._config.delay / 2)
+
+      spyOn(toast, '_clearTimeout').and.callThrough()
+
+      toast.show()
+    })
   })
 
   describe('hide', () => {
@@ -354,7 +381,7 @@ describe('Toast', () => {
   })
 
   describe('getInstance', () => {
-    it('should return collapse instance', () => {
+    it('should return a toast instance', () => {
       fixtureEl.innerHTML = '<div></div>'
 
       const div = fixtureEl.querySelector('div')
@@ -363,7 +390,7 @@ describe('Toast', () => {
       expect(Toast.getInstance(div)).toEqual(toast)
     })
 
-    it('should return null when there is no collapse instance', () => {
+    it('should return null when there is no toast instance', () => {
       fixtureEl.innerHTML = '<div></div>'
 
       const div = fixtureEl.querySelector('div')
