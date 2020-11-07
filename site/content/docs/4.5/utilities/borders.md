@@ -39,13 +39,14 @@ Use border utilities to add or remove an element's borders. Choose from all bord
 
 Change the border color using utilities built on our theme colors.
 
-<div class="bd-example-border-utils">
-{{< example >}}
-{% for color in site.data.theme-colors >}}
-<span class="border border-{{ color.name }}"></span>{% endfor >}}
+{{< example class="bd-example-border-utils" >}}
+{{< border.inline >}}
+{{- range (index $.Site.Data "theme-colors") }}
+<span class="border border-{{ .name }}"></span>
+{{- end -}}
+{{< /border.inline >}}
 <span class="border border-white"></span>
 {{< /example >}}
-</div>
 
 ## Border-radius
 
